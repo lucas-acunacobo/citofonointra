@@ -24,7 +24,7 @@ class AuthService:
         if not check_password_hash(user.clave, password):
             return None
 
-        return True
+        return user
 
     @staticmethod
     def obtener_usuarios():

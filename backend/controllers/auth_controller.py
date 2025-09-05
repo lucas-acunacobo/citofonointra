@@ -12,13 +12,18 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 def login():
     data = request.get_json()
     try:
-        validator = AuthService.validar_usuario(data.get('email'),data.get('clave'))
-        if not validator:
+        user = AuthService.validar_usuario(data.get('email'),data.get('clave'))
+        if not user:
             print("Usuario ",data.get('email')," no Autorizado")
             return jsonify({'message': False}), 200
         else:
             print("Usuario ",data.get('email')," Autorizado")
-            return jsonify({'message': True}), 200
+            print(user)
+            return (jsonify({'nombre':user.nombre,
+                            'apellidopaterno':user.apellido_paterno,
+                            'apellidomaterno':user.apellido_materno,
+                            'email':user.email}),
+                    200)
     except Exception as e:
         return jsonify({'error': 'Ocurrió un error al autenticar.'}), 500
 
