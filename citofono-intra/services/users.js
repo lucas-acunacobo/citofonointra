@@ -1,13 +1,21 @@
 import axios from "axios";
 
-const host = import.meta.env.VITE_APP_API_HOST_ROLMATRIX;
-const userId = import.meta.env.VITE_APP_USER_ID;
+const host = import.meta.env.VITE_APP_API_HOST;
 
-export async function obtenerComunasService(){
+export async function login(email, clave) {
     try {
-        return await axios.get(`${host}/${userId}/engine/consulta/todasComunas`);
+        return await axios.post(`${host}/login`,
+            {
+                email,
+                clave
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
     } catch (error) {
-        console.error("Error al cargar las comunas, error:", error);
         return error;
     }
 }

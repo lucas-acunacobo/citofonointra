@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from flask_cors import cross_origin
 from sqlalchemy import try_cast
 from werkzeug.security import generate_password_hash
 from models import db, User
@@ -7,13 +8,16 @@ from services.auth_service import AuthService
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth_bp.route('/login', methods=['POST'])
+@cross_origin()
 def login():
     data = request.get_json()
     try:
         validator = AuthService.validar_usuario(data.get('email'),data.get('clave'))
         if not validator:
+            print("Usuario ",data.get('email')," no Autorizado")
             return jsonify({'message': False}), 200
         else:
+            print("Usuario ",data.get('email')," Autorizado")
             return jsonify({'message': True}), 200
     except Exception as e:
         return jsonify({'error': 'Ocurrió un error al autenticar.'}), 500
