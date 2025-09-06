@@ -1,8 +1,5 @@
 from flask import Blueprint, request, jsonify
 from flask_cors import cross_origin
-from sqlalchemy import try_cast
-from werkzeug.security import generate_password_hash
-from models import db, User
 from services.auth_service import AuthService
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
@@ -19,14 +16,14 @@ def login():
         else:
             print("Usuario ",data.get('email')," Autorizado")
             print(user)
-            return (jsonify({'nombre':user.nombre,
+            return (jsonify({'id':user.id,
+                            'nombre':user.nombre,
                             'apellidopaterno':user.apellido_paterno,
                             'apellidomaterno':user.apellido_materno,
                             'email':user.email}),
                     200)
     except Exception as e:
         return jsonify({'error': 'Ocurrió un error al autenticar.'}), 500
-
 
 @auth_bp.route('/users', methods=['GET'])
 def get_all_users():

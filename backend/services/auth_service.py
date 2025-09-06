@@ -1,15 +1,18 @@
+import base64
+
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User
+from db import db
+from modelos.grabacionModel import Grabacion
+from modelos.usuarioModel import User
+
 
 class AuthService:
     @staticmethod
     def hash_password(password):
-        """Hashea la contraseña para guardarla en la base de datos."""
         return generate_password_hash(password)
 
     @staticmethod
     def check_password(hashed_password, password):
-        """Verifica si la contraseña dada coincide con el hash almacenado."""
         return check_password_hash(hashed_password, password)
 
     @staticmethod

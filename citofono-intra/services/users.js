@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = import.meta.env.VITE_APP_API_HOST;
+const host = import.meta.env.VITE_APP_API_HOST + "/auth";
 
 export async function login(email, clave) {
     try {

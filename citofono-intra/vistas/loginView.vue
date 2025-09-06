@@ -29,17 +29,27 @@
 <script>
 import { ref } from 'vue';
 import { login } from '../services/users'; 
+import Cookies from "js-cookie";
+import { useRouter } from 'vue-router';
 
 export default {
+   methods: {
+    
+  },
   setup() {
     const email = ref('');
     const password = ref('');
+    const router = useRouter();
 
     const onSubmit = async() => {
       console.log('Email:', email.value);
       console.log('Password:', password.value);
       const response = await login(email.value, password.value);
-      console.log('Response:', response);
+      console.log('Response:', response.data );
+      if (response.data) {
+        Cookies.set("usuario", response.data.id, { expires: 1 }); 
+        router.push("/grabar");
+      } 
     };
 
     return { email, password, onSubmit };
@@ -48,64 +58,58 @@ export default {
 </script>
 
 <style scoped>
-/* Centrado horizontal y vertical con Flexbox */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Altura pantalla completa */
-  background-color: #f9fafb; /* gris muy claro */
+  min-height: 100vh;
+  background-color: #f9fafb; 
   padding: 1rem;
   box-sizing: border-box;
 }
 
-/* Caja principal del login */
 .login-box {
-  background-color: #ffffff; /* blanco */
+  background-color: #ffffff; 
   padding: 2rem;
-  border: 2px solid #dc2626; /* rojo */
-  border-radius: 0.5rem; /* borde redondeado */
-  box-shadow: 0 8px 15px rgba(220, 38, 38, 0.4); /* sombra en rojo */
+  border: 2px solid #dc2626; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 8px 15px rgba(220, 38, 38, 0.4); 
   width: 100%;
   max-width: 350px;
   box-sizing: border-box;
   text-align: center;
 }
 
-/* Título */
 .title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #dc2626; /* rojo */
+  color: #dc2626; 
   margin-bottom: 1.5rem;
 }
 
-/* Formulario: disposición en columna con espacio */
 form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
-/* Inputs */
 .input-field {
   padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db; /* gris claro */
-  border-radius: 0.375rem; /* rounded-md */
+  border: 1px solid #d1d5db; 
+  border-radius: 0.375rem; 
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
   outline-offset: 2px;
 }
 
 .input-field:focus {
-  border-color: #dc2626; /* rojo */
+  border-color: #dc2626;
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.4);
   outline: none;
 }
 
-/* Botón */
 .btn-submit {
-  background-color: #dc2626; /* rojo */
+  background-color: #dc2626; 
   color: white;
   padding: 0.75rem 1rem;
   font-size: 1rem;
@@ -117,13 +121,12 @@ form {
 }
 
 .btn-submit:hover {
-  background-color: #b91c1c; /* rojo oscuro */
+  background-color: #b91c1c;
 }
 
-/* Texto de registro */
 .register-text {
   margin-top: 1rem;
-  color: #6b7280; /* gris medio */
+  color: #6b7280; 
   font-size: 0.875rem;
 }
 
@@ -138,7 +141,6 @@ form {
   text-decoration: underline;
 }
 
-/* Responsive: ajusta márgenes y tamaños en pantallas chicas */
 @media (max-width: 400px) {
   .login-box {
     padding: 1.5rem;

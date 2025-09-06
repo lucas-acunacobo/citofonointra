@@ -1,8 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-# Instancia de SQLAlchemy, inicializada más tarde
-db = SQLAlchemy()
-
+from db import db
 class User(db.Model):
     """Modelo de la tabla de usuarios."""
     __tablename__ = 'usuario'

@@ -1,10 +1,10 @@
 from flask import Flask
 from config import Config
-from models import db
+from db import db
 from controllers.auth_controller import auth_bp
+from controllers.video_controller import video_bp
 
 def create_app():
-    """Función de factoría para crear la aplicación Flask."""
     app = Flask(__name__)
     app.config.from_object(Config)
 
@@ -13,5 +13,6 @@ def create_app():
 
     # Registra los Blueprints de los controladores
     app.register_blueprint(auth_bp)
+    app.register_blueprint(video_bp)
 
     return app
