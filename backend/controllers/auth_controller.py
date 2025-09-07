@@ -4,6 +4,11 @@ from services.auth_service import AuthService
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+@auth_bp.route('/test', methods=['GET'])
+@cross_origin()
+def test():
+    return jsonify({"data":"funciona!"}), 200
+
 @auth_bp.route('/login', methods=['POST'])
 @cross_origin()
 def login():
