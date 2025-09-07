@@ -44,3 +44,34 @@ class AuthService:
             'creado_en': user.creado_en.strftime('%Y-%m-%d %H:%M:%S')
         })
         return users_list
+
+    @staticmethod
+    def nuevo_registro(data):
+        try:
+            nombre = data.get('nombre')
+            apellido_paterno = data.get('apellido_paterno')
+            apellido_materno = data.get('apellido_materno')
+            email = data.get('email')
+            clave = data.get('clave')
+            print(data)
+            existing_user = User.query.filter_by(email=email).first()
+            if existing_user:
+                return 0
+
+            hashed_password = generate_password_hash(clave)
+
+            new_user = User(
+                nombre=nombre,
+                apellido_paterno=apellido_paterno,
+                apellido_materno=apellido_materno,
+                clave=hashed_password,
+                email=email
+            )
+            db.session.add(new_user)
+            db.session.commit()
+
+            return new_user.id
+        except Exception as e:
+            db.session.rollback()
+            return 0
+

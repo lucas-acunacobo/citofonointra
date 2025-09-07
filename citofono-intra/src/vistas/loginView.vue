@@ -20,7 +20,10 @@
         <button type="submit" class="btn-submit">Entrar</button>
       </form>
       <p class="register-text">
-        ¿No tienes cuenta? <a href="#" class="register-link">Regístrate</a>
+        ¿No tienes cuenta? 
+        <router-link to="/registro" class="register-link">
+          Regístrate
+        </router-link>
       </p>
     </main>
   </div>
@@ -31,6 +34,7 @@ import { ref } from 'vue';
 import { login } from '../services/users'; 
 import Cookies from "js-cookie";
 import { useRouter } from 'vue-router';
+import { inject } from 'vue';
 
 export default {
    methods: {
@@ -40,16 +44,22 @@ export default {
     const email = ref('');
     const password = ref('');
     const router = useRouter();
+    
+
+    const isAuthenticated = inject('isAuthenticated');
 
     const onSubmit = async() => {
-      console.log('Email:', email.value);
-      console.log('Password:', password.value);
       const response = await login(email.value, password.value);
-      console.log('Response:', response.data );
-      if (response.data) {
+      console.log(Object.keys(response.data).length)
+      if (Object.keys(response.data).length > 0) {
+        isAuthenticated.value = true;
         Cookies.set("usuario", response.data.id, { expires: 1 }); 
         router.push("/grabar");
       } 
+      else {
+        isAuthenticated.value = false;
+        alert("Error al iniciar sesión. Por favor, verifica tus credenciales.");
+      }
     };
 
     return { email, password, onSubmit };

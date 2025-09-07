@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Cookies from "js-cookie";
-import login from '../../vistas/loginView.vue'
-import home from '../../vistas/homeView.vue'
-import videos from '../../vistas/videosView.vue'
+import login from '../vistas/loginView.vue'
+import home from '../vistas/homeView.vue'
+import videos from '../vistas/videosView.vue'
+import registro from '../vistas/registroView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,30 +12,37 @@ const router = createRouter({
       path: "/grabar",
       name: "home",
       component: home,
-      meta: { requiresAuth: false }
+      meta: { requiresAuth: true }
     },
     {
       path: "/login",
       name: "login",
       component: login,
-      meta: { requiresAuth: false }
     },
     {
       path: "/videos",
       name: "videos",
       component: videos,
-      meta: { requiresAuth: false }
+      meta: { requiresAuth: true }
+    },
+    {
+      path: "/registro",
+      name: "registro",
+      component: registro,
     },
   ],
 })
 
 router.beforeEach((to, from, next) => {
-  // Check if the user is authenticated
-  const isAuthenticated = Cookies.get("auth");
+  const isAuthenticated = !!Cookies.get('usuario'); // Comprueba la cookie
 
+  // Si la ruta a la que va requiere autenticación Y el usuario no está autenticado
   if (to.meta.requiresAuth && !isAuthenticated) {
+    // Redirige a la página de login
     next({ name: 'login' });
   } else {
+    // Si la ruta no requiere autenticación O el usuario está autenticado,
+    // permite la navegación
     next();
   }
 });

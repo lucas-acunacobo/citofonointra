@@ -12,7 +12,7 @@ def login():
         user = AuthService.validar_usuario(data.get('email'),data.get('clave'))
         if not user:
             print("Usuario ",data.get('email')," no Autorizado")
-            return jsonify({'message': False}), 200
+            return jsonify({}), 200
         else:
             print("Usuario ",data.get('email')," Autorizado")
             print(user)
@@ -38,3 +38,21 @@ def get_all_users():
         return jsonify({'error': 'Ocurrió un error inesperado al obtener los usuarios.'}), 500
     finally:
         return jsonify(users_list), 200
+
+@auth_bp.route('/registrar', methods=['POST'])
+@cross_origin()
+def nuevo_registro():
+    data = request.get_json()
+    try:
+        required_fields = ['nombre', 'apellido_paterno', 'apellido_materno', 'email', 'clave']
+        if not all(field in data for field in required_fields):
+            return jsonify({'error': 'Faltan campos obligatorios.'}), 400
+        respuesta = AuthService.nuevo_registro(data)
+        if int(respuesta)>0:
+            return jsonify({'ok': 'Usuario añadido correctamente.'}), 200
+        else:
+            return False, 201
+    except Exception as e:
+        print("Error al registrar nuevo usuario. " + e)
+        return jsonify({'error': 'Ocurrió un error inesperado al registrar nuevo usuario.'}), 500
+
