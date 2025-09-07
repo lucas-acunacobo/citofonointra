@@ -44,11 +44,14 @@ const videoBlob = ref(null);
 
 const getCameras = async () => {
   try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    
     const devices = await navigator.mediaDevices.enumerateDevices();
     videoDevices.value = devices.filter(device => device.kind === 'videoinput');
     if (videoDevices.value.length > 0) {
       selectedDeviceId.value = videoDevices.value[0].deviceId;
     }
+    stream.getTracks().forEach(track => track.stop());
   } catch (err) {
     status.value = "Error: No se pudo acceder a la lista de dispositivos.";
     console.error(err);
