@@ -5,14 +5,12 @@
     </div>
     <div class="header-actions">
       <div>
-        <button v-if="isAuthenticated" @click="handleAuthAction('logout')" class="auth-button">
-          Logout
-        </button>
-        <div class="dropdown" v-if="true">
+        <div class="dropdown" v-if="isAuthenticated">
           <button class="dropbtn"><img src="../assets/icons8-opciones-64.png"/></button>
           <div class="dropdown-content">
             <router-link to="/">Grabar Video</router-link>
             <router-link to="/videos">Videos</router-link>
+            <router-link to="/login" @click="handleAuthAction('logout')">Logout</router-link>
           </div>
         </div>
       </div>
@@ -55,24 +53,6 @@ const handleAuthAction = (action) => {
   gap: 15px;
 }
 
-.auth-button {
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.auth-button:hover {
-  background-color: white;
-  color: #f44336;
-}
-
-/* Menú desplegable */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -115,7 +95,7 @@ const handleAuthAction = (action) => {
 
 img{
   width: 30px;
-  height: 25px;
+  height: 20px;
 }
 .dropdown:hover .dropdown-content {
   display: block;
