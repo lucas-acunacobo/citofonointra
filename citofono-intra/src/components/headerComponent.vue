@@ -1,11 +1,15 @@
 <template>
   <header class="headder">
-    <div class="dropdown"  v-if="true">
+    <div class="dropdown"  v-if="isAuthenticated">
+      <h1 style="margin-right: 10px;">INTRO</h1>
       <button class="dropbtn">OPCIONES</button>
       <div class="dropdown-content">
         <router-link to="/">Grabar Video</router-link>
         <router-link to="/videos">Videos</router-link>
       </div>
+    </div>
+    <div v-else>
+      <h1>INTRO</h1>
     </div>
     <div class="header-actions">
 
