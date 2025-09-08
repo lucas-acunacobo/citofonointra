@@ -1,14 +1,14 @@
 <template>
   <header class="headder">
-    <div class="dropdown"  v-if="isAuthenticated">
-      <h1 style="margin-right: 10px;">INTRO</h1>
+    <h1 style="margin-right: 10px;" v-if="isAuthenticated">INTRO</h1>
+    <div class="dropdown" v-if="isAuthenticated">
       <button class="dropbtn">OPCIONES</button>
       <div class="dropdown-content">
         <router-link to="/">Grabar Video</router-link>
         <router-link to="/videos">Videos</router-link>
       </div>
     </div>
-    <div v-else>
+    <div v-if="!isAuthenticated">
       <h1>INTRO</h1>
     </div>
     <div class="header-actions">
