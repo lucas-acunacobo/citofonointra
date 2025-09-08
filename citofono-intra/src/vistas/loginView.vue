@@ -1,4 +1,5 @@
 <template>
+  <fullScreenSpinner v-if="spinner" class="spinner"/>
   <div class="container">
     <main class="login-box">
       <h1 class="title">Iniciar Sesión</h1>
@@ -35,8 +36,10 @@ import { login } from '../services/users';
 import Cookies from "js-cookie";
 import { useRouter } from 'vue-router';
 import { inject } from 'vue';
+import fullScreenSpinner from '../components/fullScreenSpinner.vue';
 
 export default {
+  components: { fullScreenSpinner },
    methods: {
     
   },
@@ -44,25 +47,29 @@ export default {
     const email = ref('');
     const password = ref('');
     const router = useRouter();
+    const spinner = ref(false);
     
 
     const isAuthenticated = inject('isAuthenticated');
 
     const onSubmit = async() => {
+      spinner.value = true;
       const response = await login(email.value, password.value);
       console.log(Object.keys(response.data).length)
       if (Object.keys(response.data).length > 0) {
         isAuthenticated.value = true;
         Cookies.set("usuario", response.data.id, { expires: 1 }); 
+        spinner.value = false; 
         router.push("/");
       } 
       else {
+        spinner.value = false;
         isAuthenticated.value = false;
         alert("Error al iniciar sesión. Por favor, verifica tus credenciales.");
       }
     };
 
-    return { email, password, onSubmit };
+    return { email, password, spinner, onSubmit };
   },
 };
 </script>
