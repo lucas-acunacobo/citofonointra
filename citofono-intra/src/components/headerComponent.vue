@@ -1,21 +1,21 @@
 <template>
   <header class="headder">
-    <h1 style="margin-right: 10px;" v-if="isAuthenticated">INTRO</h1>
-    <div class="dropdown" v-if="isAuthenticated">
-      <button class="dropbtn">OPCIONES</button>
-      <div class="dropdown-content">
-        <router-link to="/">Grabar Video</router-link>
-        <router-link to="/videos">Videos</router-link>
-      </div>
-    </div>
-    <div v-if="!isAuthenticated">
+    <div>
       <h1>INTRO</h1>
     </div>
     <div class="header-actions">
-
-      <button v-if="isAuthenticated" @click="handleAuthAction('logout')" class="auth-button">
-        Logout
-      </button>
+      <div>
+        <button v-if="isAuthenticated" @click="handleAuthAction('logout')" class="auth-button">
+          Logout
+        </button>
+        <div class="dropdown" v-if="true">
+          <button class="dropbtn"><img src="../assets/icons8-opciones-64.png"/></button>
+          <div class="dropdown-content">
+            <router-link to="/">Grabar Video</router-link>
+            <router-link to="/videos">Videos</router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 </template>
@@ -113,6 +113,10 @@ const handleAuthAction = (action) => {
   background: #f1f1f1;
 }
 
+img{
+  width: 30px;
+  height: 25px;
+}
 .dropdown:hover .dropdown-content {
   display: block;
 }
