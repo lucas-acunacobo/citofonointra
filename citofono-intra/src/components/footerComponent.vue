@@ -12,18 +12,17 @@
 </template>
 
 <script setup>
-// No se necesita lógica en el script para este footer simple.
+
 </script>
 
 <style scoped>
 .footer {
-  background-color: #f44336; /* Color rojo */
+  background-color: #f44336; 
   color: white;
   padding: 20px;
   text-align: center;
-  /* Posicionamiento para que el footer se quede en la parte inferior de la página */
   width: 100%;
-  box-sizing: border-box; /* Asegura que el padding no añada ancho extra */
+  box-sizing: border-box; 
 }
 
 .footer-content {

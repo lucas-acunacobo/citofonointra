@@ -54,7 +54,7 @@ export default {
       if (Object.keys(response.data).length > 0) {
         isAuthenticated.value = true;
         Cookies.set("usuario", response.data.id, { expires: 1 }); 
-        router.push("/grabar");
+        router.push("/");
       } 
       else {
         isAuthenticated.value = false;

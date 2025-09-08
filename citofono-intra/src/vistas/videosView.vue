@@ -1,12 +1,10 @@
 <template>
   <div class="videos-container">
-    <!-- Sidebar izquierda con lista de videos -->
     <aside class="sidebar">
       <h2>Mis Grabaciones</h2>
       <VideoList :usuario-id="usuarioId" @videoSelected="playVideo" />
     </aside>
 
-    <!-- Reproductor principal a la derecha -->
     <main class="player">
       <div v-if="selectedVideo">
         <video
@@ -58,7 +56,6 @@ export default {
   font-family: Arial, sans-serif;
 }
 
-/* Sidebar izquierda */
 .sidebar {
   width: 25%;
   background: #f5f5f5;
@@ -72,7 +69,6 @@ export default {
   margin-bottom: 12px;
 }
 
-/* Reproductor principal */
 .player {
   flex: 1;
   padding: 20px;

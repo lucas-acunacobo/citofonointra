@@ -26,7 +26,6 @@ const saveVideo = async () => {
 
   isSaving.value = true;
 
-  // Crear un File a partir del Blob
   const videoFile = new File([props.videoBlob], "grabacion.webm", { type: "video/webm" });
 
   const response = await saveRecord(usr, videoFile);

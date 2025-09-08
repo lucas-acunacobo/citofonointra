@@ -2,7 +2,7 @@
   <header>
     <h1>INTRO</h1>
     <div class="menu" v-if="isAuthenticated">
-      <router-link to="/grabar" class="menu-button">
+      <router-link to="/" class="menu-button">
         Grabar Video
       </router-link>
       <router-link to="/videos" class="menu-button">
@@ -25,12 +25,8 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-// 1. Inyecta el estado proporcionado por el componente padre
 const isAuthenticated = inject('isAuthenticated');
 
-/**
- * Función para manejar la acción de autenticación.
- */
 const handleAuthAction = (action) => {
   if (action === 'logout') {
     Cookies.remove('usuario');
@@ -47,7 +43,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  background-color: #f44336; /* Color rojo */
+  background-color: #f44336; 
   color: white;
   border-bottom: 2px solid #d32f2f;
 }

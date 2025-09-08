@@ -37,7 +37,6 @@ const videoDevices = ref([]);
 const selectedDeviceId = ref('');
 const status = ref('');
 
-// Variables de grabación
 let mediaRecorder = null;
 const recordedChunks = [];
 const videoBlob = ref(null);
@@ -60,7 +59,6 @@ const getCameras = async () => {
 
 const startCameraStream = async () => {
   status.value = 'Iniciando cámara...';
-  // Detener cualquier stream actual
   if (videoElement.value && videoElement.value.srcObject) {
     videoElement.value.srcObject.getTracks().forEach(track => track.stop());
   }

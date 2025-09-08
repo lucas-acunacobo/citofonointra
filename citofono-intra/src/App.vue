@@ -3,7 +3,6 @@ import { ref, provide } from 'vue';
 import headerComponent from './components/headerComponent.vue';
 import footerComponent from './components/footerComponent.vue';
 
-//const router = useRouter();
 const isAuthenticated = ref(false);
 
 provide('isAuthenticated', isAuthenticated);

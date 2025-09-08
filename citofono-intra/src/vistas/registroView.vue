@@ -41,7 +41,6 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-// Define el estado del formulario como un objeto reactivo
 const form = reactive({
   nombre: '',
   apellido_paterno: '',
@@ -68,7 +67,7 @@ const handleSubmit = async () => {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #fce4ec; /* Rosa muy claro, complementa el rojo */
+  background-color: #fce4ec; 
 }
 
 .registration-form {
@@ -78,7 +77,6 @@ const handleSubmit = async () => {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-  border-top: 5px solid #d32f2f; /* Línea roja */
 }
 
 h2 {

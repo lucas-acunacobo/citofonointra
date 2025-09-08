@@ -9,7 +9,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/grabar",
+      path: "/",
       name: "home",
       component: home,
       meta: { requiresAuth: true }
@@ -34,15 +34,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const isAuthenticated = !!Cookies.get('usuario'); // Comprueba la cookie
+  const isAuthenticated = !!Cookies.get('usuario'); 
 
-  // Si la ruta a la que va requiere autenticación Y el usuario no está autenticado
   if (to.meta.requiresAuth && !isAuthenticated) {
-    // Redirige a la página de login
     next({ name: 'login' });
   } else {
-    // Si la ruta no requiere autenticación O el usuario está autenticado,
-    // permite la navegación
     next();
   }
 });
