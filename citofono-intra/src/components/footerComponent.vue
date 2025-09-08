@@ -6,6 +6,7 @@
         <p>Contacto: info@micompania.com</p>
         <p>Teléfono: +123 456 7890</p>
         <p>Dirección: Calle Falsa 123, Ciudad, País</p>
+        <p>versión 0.0.1</p>
       </div>
     </div>
   </footer>

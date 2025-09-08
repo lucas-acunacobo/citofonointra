@@ -1,13 +1,11 @@
 <template>
-  <header>
-    <h1>INTRO</h1>
-    <div class="menu" v-if="isAuthenticated">
-      <router-link to="/" class="menu-button">
-        Grabar Video
-      </router-link>
-      <router-link to="/videos" class="menu-button">
-        Videos
-      </router-link>
+  <header class="headder">
+    <div class="dropdown"  v-if="true">
+      <button class="dropbtn">OPCIONES</button>
+      <div class="dropdown-content">
+        <router-link to="/">Grabar Video</router-link>
+        <router-link to="/videos">Videos</router-link>
+      </div>
     </div>
     <div class="header-actions">
 
@@ -38,7 +36,7 @@ const handleAuthAction = (action) => {
 </script>
 
 <style scoped>
-header {
+.headder {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -46,11 +44,6 @@ header {
   background-color: #f44336; 
   color: white;
   border-bottom: 2px solid #d32f2f;
-}
-
-h1 {
-  margin: 0;
-  font-size: 1.5em;
 }
 
 .header-actions {
@@ -75,25 +68,48 @@ h1 {
   color: #f44336;
 }
 
-.menu-button {
-  background-color: transparent;
+/* Menú desplegable */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.dropbtn {
+  background: #8b0000;
   color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
   cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
+  border-radius: 6px;
 }
 
-.menu-button:hover {
-  background-color: white;
-  color: #f44336;
+.dropbtn:hover {
+  background: #a30000;
 }
 
-.menu {
-  display: flex;
-  gap: 15px;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 </style>
