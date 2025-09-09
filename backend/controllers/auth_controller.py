@@ -38,7 +38,6 @@ def get_all_users():
         if not users_list.count():
             return jsonify({'message': 'No se encontraron usuarios.'}),404
     except Exception as e:
-        # Captura cualquier error inesperado y devuelve un error 500.
         print("Error al buscar usuarios. " + e)
         return jsonify({'error': 'Ocurrió un error inesperado al obtener los usuarios.'}), 500
     finally:

@@ -9,5 +9,4 @@ class Grabacion(db.Model):
     archivo = db.Column(db.LargeBinary, nullable=False)
     creado_en = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # relationship usando string para evitar error de importación
     usuario = db.relationship("User", backref=db.backref("grabaciones", lazy=True))
