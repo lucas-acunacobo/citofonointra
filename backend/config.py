@@ -10,12 +10,12 @@ class Config:
     DB_NAME = os.environ.get('DB_NAME', 'citofono_intra')
     DB_PORT = os.environ.get('DB_PORT', '5432')
 
-    #SQLALCHEMY_DATABASE_URI = (
-    #    f'postgresql://citofono_intra_user:oaJ2PKm6SHk5N34pO1jnIRWuBgwZjOCl@dpg-d2uh706r433s73ea2l20-a.oregon-postgres.render.com/citofono_intra'
-    #)
     SQLALCHEMY_DATABASE_URI = (
-        f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+        f'postgresql://citofono_intra_user:oaJ2PKm6SHk5N34pO1jnIRWuBgwZjOCl@dpg-d2uh706r433s73ea2l20-a.oregon-postgres.render.com/citofono_intra'
     )
+    #SQLALCHEMY_DATABASE_URI = (
+    #    f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+    #)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 """
     cod desarrollo
