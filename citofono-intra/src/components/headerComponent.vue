@@ -5,7 +5,7 @@
     </div>
     <div class="header-actions">
       <div>
-        <div class="dropdown" v-if="isAuthenticated">
+        <div class="dropdown" v-if="Cookies.get('usuario')">
           <button class="dropbtn"><img src="../assets/icons8-opciones-64.png"/></button>
           <div class="dropdown-content">
             <router-link to="/">Grabar Video</router-link>
