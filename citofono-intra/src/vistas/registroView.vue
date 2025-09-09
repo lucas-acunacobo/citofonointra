@@ -1,4 +1,5 @@
 <template>
+  <fullScreenSpinner v-if="spinner" class="spinner"/>
   <div class="registration-container">
     <div class="registration-form">
       <h2>Registro de Usuario</h2>
@@ -35,12 +36,13 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import { registroUsuario } from '../services/users.js'; 
 import { useRouter } from 'vue-router';
+import fullScreenSpinner from '../components/fullScreenSpinner.vue';
 
 const router = useRouter();
-
+const spinner = ref(false);
 const form = reactive({
   nombre: '',
   apellido_paterno: '',
@@ -50,12 +52,15 @@ const form = reactive({
 });
 
 const handleSubmit = async () => {
+  spinner.value = true;
   const response = await registroUsuario(form);
 
-  if (response.statusText === 'OK') {
+  if (response.data.ok) {
     alert('¡Registro exitoso!');
+    spinner.value = false;
     router.push("/login");
   } else {
+    spinner.value = false;
     alert(`Error al registrar! Por favor, intente nuevamente.`);
   }
 };
