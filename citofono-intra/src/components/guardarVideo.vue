@@ -21,7 +21,6 @@ const saveVideo = async () => {
     return;
   }
   const usr = Cookies.get("usuario");
-  console.log("props.videoBlob", props.videoBlob, props.videoBlob.size);
 
 
   isSaving.value = true;

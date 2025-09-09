@@ -16,11 +16,9 @@ def login():
     try:
         user = AuthService.validar_usuario(data.get('email'),data.get('clave'))
         if not user:
-            print("Usuario ",data.get('email')," no Autorizado")
             return jsonify({}), 200
         else:
-            print("Usuario ",data.get('email')," Autorizado")
-            print(user)
+
             return (jsonify({'id':user.id,
                             'nombre':user.nombre,
                             'apellidopaterno':user.apellido_paterno,

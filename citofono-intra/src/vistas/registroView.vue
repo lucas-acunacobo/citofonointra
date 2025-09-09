@@ -51,7 +51,7 @@ const form = reactive({
 
 const handleSubmit = async () => {
   const response = await registroUsuario(form);
-  console.log(response);
+
   if (response.statusText === 'OK') {
     alert('¡Registro exitoso!');
     router.push("/login");

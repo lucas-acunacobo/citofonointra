@@ -5,7 +5,7 @@ const host = import.meta.env.VITE_APP_API_HOST + "video";
 export async function saveRecord(usuarioId, video) {
     try {
         const formData = new FormData();
-        console.log("video", video);
+
         formData.append("video", video);      
         formData.append("usuarioId", usuarioId);
 
@@ -38,7 +38,6 @@ export async function getUsersRecords(userid) {
 
 export async function getRecord(videoid) {
     try {
-        console.log("videoid", videoid);
         return await axios.post(`${host}/obtenerVideo`,
             {
                 videoid

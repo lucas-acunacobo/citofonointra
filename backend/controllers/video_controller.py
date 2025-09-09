@@ -32,7 +32,7 @@ def obtenerVideoUsuario():
         return jsonify(videos), 200
 
     except Exception as e:
-        print("Error al guardar video:", str(e))
+        print("Error al obtener video:", str(e))
         return jsonify({'error': 'Ocurrió un error inesperado.'}), 500
 
 @video_bp.route('/obtenerVideo', methods=['POST'])

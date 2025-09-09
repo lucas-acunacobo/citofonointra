@@ -55,7 +55,7 @@ export default {
     const onSubmit = async() => {
       spinner.value = true;
       const response = await login(email.value, password.value);
-      console.log(Object.keys(response.data).length)
+
       if (Object.keys(response.data).length > 0) {
         isAuthenticated.value = true;
         Cookies.set("usuario", response.data.id, { expires: 1 }); 

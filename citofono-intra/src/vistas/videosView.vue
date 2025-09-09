@@ -39,7 +39,6 @@ export default {
     async playVideo(id) {
     try {
       const response = await getRecord(id); 
-      console.log("Video cargado:", response.data);
       this.selectedVideo = URL.createObjectURL(response.data);
     } catch (error) {
       console.error("Error cargando el video:", error);

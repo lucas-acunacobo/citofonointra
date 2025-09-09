@@ -45,5 +45,5 @@ class VideoService:
                 direct_passthrough=True
             )
         except Exception as e:
-            print("Error al obtener videos:", e)
+            print("Error al obtener el video:", e)
             return []

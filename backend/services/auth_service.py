@@ -53,7 +53,7 @@ class AuthService:
             apellido_materno = data.get('apellido_materno')
             email = data.get('email')
             clave = data.get('clave')
-            print(data)
+
             existing_user = User.query.filter_by(email=email).first()
             if existing_user:
                 return 0
